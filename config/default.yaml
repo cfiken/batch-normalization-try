@@ -1,0 +1,7 @@
+data_type: 'cifar'
+batch_size: 128
+learning_rate: 0.001
+num_inputs: 1024
+num_outputs: 10
+num_units: 128
+num_layers: 2
