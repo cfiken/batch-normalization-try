@@ -34,7 +34,7 @@ class CNN:
         l_4_flat = tf.reshape(l_4, [-1, 4096])
         l_5 = tf.layers.dense(inputs=l_4_flat, units=1024, activation=tf.nn.relu)
         l_5 = tf.layers.dropout(inputs=l_5,
-                                     rate=0.4,  # todo set config
+                                     rate=config['dropout_rate'],  # todo set config
                                      training=self.is_training)
         l_6 = tf.layers.dense(inputs=l_5, units=10)
         self.logits = l_6

@@ -1,4 +1,6 @@
 import numpy as np
+from argparse import ArgumentParser
+import yaml
 
 
 def assert_shape(target: np.ndarray, shape):
@@ -12,3 +14,18 @@ def assert_shape(target: np.ndarray, shape):
     assert len(target_shape) == len(shape), 'dimension is not equal'
     for (i, s) in enumerate(shape):
         assert target_shape[i] == s, "size of target[{}] is not {}".format(i, s)
+
+
+def get_args():
+    argparser = ArgumentParser()
+    argparser.add_argument('-c', '--config', 
+                           default='None',
+                           help='The Configuration File')
+    args = argparser.parse_args()
+    return args
+
+
+def load_config(config_path: str):
+    f = open(config_path, 'r+')
+    config = yaml.load(f)
+    return config
