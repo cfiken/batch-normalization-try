@@ -3,5 +3,5 @@ learning_rate: 0.001
 is_use_dropout: True
 is_use_batch_normalization: False
 dropout_rate: 0.2
-num_epoch: 100
+num_epoch: 400
 num_print_step: 50
