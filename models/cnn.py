@@ -33,7 +33,7 @@ class CNN:
         l_4 = tf.layers.max_pooling2d(inputs=l_3, pool_size=[2, 2], strides=2)
         l_4_flat = tf.reshape(l_4, [-1, 4096])
         l_5 = tf.layers.dense(inputs=l_4_flat, units=1024, activation=tf.nn.relu)
-        if config['is_use_drop_out']:
+        if config['is_use_dropout']:
             l_5 = tf.layers.dropout(inputs=l_5,
                                     rate=config['dropout_rate'],
                                     training=self.is_training)
