@@ -70,7 +70,7 @@ class CNNRunner:
                         })
                         writer.add_summary(test_smr, global_step)
                     global_step += 1
-                print('{} steps, test accuracy:  {:.6f}, loss: {:.6f} ({}/{} epochs)'.format(global_step, test_acc, loss, i, config['num_epoch']))
+                print('{} steps, test accuracy:  {:.6f} ({}/{} epochs)'.format(global_step, test_acc, i, config['num_epoch']))
 
 
 if __name__ == '__main__':

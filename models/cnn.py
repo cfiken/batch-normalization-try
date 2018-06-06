@@ -24,15 +24,21 @@ class CNN:
                                     kernel_size=[5, 5],
                                     padding='same',
                                     activation=tf.nn.relu)
+        if config['is_use_bn_conv']:
+            l_1 = tf.layers.batch_normalization(l_1, training=self.is_training)
         l_2 = tf.layers.max_pooling2d(inputs=l_1, pool_size=[2, 2], strides=2)
         l_3 = tf.layers.conv2d(inputs=l_2,
                                      filters=64,
                                      kernel_size=[5, 5],
                                      padding='same',
                                      activation=tf.nn.relu)
+        if config['is_use_bn_conv']:
+            l_3 = tf.layers.batch_normalization(l_3, training=self.is_training)
         l_4 = tf.layers.max_pooling2d(inputs=l_3, pool_size=[2, 2], strides=2)
         l_4_flat = tf.reshape(l_4, [-1, 4096])
         l_5 = tf.layers.dense(inputs=l_4_flat, units=1024, activation=tf.nn.relu)
+        if config['is_use_bn_dense']:
+            l_5 = tf.layers.batch_normalization(l_5, training=self.is_training)
         if config['is_use_dropout']:
             l_5 = tf.layers.dropout(inputs=l_5,
                                     rate=config['dropout_rate'],
