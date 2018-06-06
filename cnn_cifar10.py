@@ -29,7 +29,9 @@ class CNNRunner:
         crossent = tf.nn.sparse_softmax_cross_entropy_with_logits(labels=self.cnn.y, logits=self.cnn.logits)
         loss_op = tf.reduce_mean(crossent)
         optimizer = tf.train.AdamOptimizer(config['learning_rate'])
-        train_op = optimizer.minimize(loss_op)
+        extra_update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        with tf.control_dependencies(extra_update_ops):
+            train_op = optimizer.minimize(loss_op)
         correct = tf.equal(self.cnn.predicted_classes, self.cnn.y)
         acc_op = tf.reduce_mean(tf.cast(correct, myfloat))
 
